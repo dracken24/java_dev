@@ -121,5 +121,10 @@
                   ""
               ]
           }
-      ]
-  }
+      ],
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "jaylib-ffm-5.5.0-2.jar"
+    ]
+}

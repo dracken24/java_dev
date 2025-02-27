@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Raylib",
+            "type": "shell",
+            "command": "cmd.exe",
+            "args": [
+                "/c",
+                "javac -d bin -cp jaylib-ffm-5.5.0-2.jar src/App.java && java --enable-native-access=ALL-UNNAMED -cp jaylib-ffm-5.5.0-2.jar;bin App"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+} 
