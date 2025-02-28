@@ -1,5 +1,3 @@
-package com.objects;
-
 /* =============================================================================== */
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /*               -------------------------------------------------                 */
@@ -13,6 +11,8 @@ package com.objects;
 /*               -------------------------------------------------                 */
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /* =============================================================================== */
+
+package com.objects;
 
 import com.raylib.Texture;
 import com.raylib.Color;
@@ -76,7 +76,7 @@ public class SpriteSheet
 /***                                 FUNCTIONS                                     */
 /***********************************************************************************/
 
-	public void updateSprite(boolean resetFrame)
+	public void updateSprite(boolean resetFrame, boolean invertXAxis)
 	{
 		Rectangle source = new Rectangle(currentFrame * frameSize.getX(), 0, frameSize.getX(), frameSize.getY());
 		Rectangle dest = new Rectangle(position.getX(), position.getY() , frameSize.getX() * scale, frameSize.getY() * scale);
@@ -85,6 +85,13 @@ public class SpriteSheet
 		// NOTE: param source is for the zone of the sprite sheet to draw
 		// NOTE: param dest is for the position and size of the sprite sheet to draw
 		// NOTE: param origin is for the center of the sprite sheet to draw
+
+		// invert x axis
+		if (invertXAxis)
+		{
+			invertXAxis(source);
+		}
+		
 		drawTexturePro(spriteSheet, source, dest, origin, rotation, color);
 
 		if (skipFPSCount < skipFPS)
@@ -112,6 +119,11 @@ public class SpriteSheet
 			(int)(frameSize.getY() * scale), 
 			color
 		);
+	}
+
+	public void invertXAxis(Rectangle source)
+	{
+		source.setWidth(-frameSize.getX());
 	}
 
 /***********************************************************************************/
@@ -208,25 +220,3 @@ public class SpriteSheet
 		this.frameSize = frameSize;
 	}
 }
-
-// // Pour une spritesheet avec des frames de 32x32 pixels
-// Rectangle source = new Rectangle(
-//     currentFrame * 32,  // x: position de la frame actuelle
-//     0,                  // y: première ligne
-//     32,                 // width: largeur d'une frame
-//     32                  // height: hauteur d'une frame
-// );
-
-// Rectangle dest = new Rectangle(
-//     position.getX(),    // x: position à l'écran
-//     position.getY(),    // y: position à l'écran
-//     32 * scale,        // width: taille finale
-//     32 * scale         // height: taille finale
-// );
-
-// Vector2 origin = new Vector2(
-//     16 * scale,        // x: centre de l'image
-//     16 * scale         // y: centre de l'image
-// );
-
-// drawTexturePro(texture, source, dest, origin, rotation, color);

@@ -36,7 +36,6 @@ public class Player
 /***                                 VARIABLES                                     */
 /***********************************************************************************/
 
-
 	SpriteSheet	attack01;
     SpriteSheet	attack02;
     SpriteSheet	attack03;
@@ -48,7 +47,11 @@ public class Player
     SpriteSheet	hurt;
     SpriteSheet	shild;
 
+	SpriteSheet	currentAction;
+
     Sprite currentSprite;
+
+	boolean		rightSide;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                   */
@@ -57,6 +60,7 @@ public class Player
 	public Player()
 	{
         currentSprite = Sprite.IDLE;
+		rightSide = false;
 	}
 
 /***********************************************************************************/
@@ -65,6 +69,7 @@ public class Player
 
 	public void update()
 	{
+		currentAction.updateSprite(false, rightSide);
 	}
 
 /***********************************************************************************/
@@ -116,7 +121,7 @@ public class Player
 		return hurt;
 	}   
     
-        public SpriteSheet getShild()
+    public SpriteSheet getShild()
 	{
 		return shild;
 	}   
@@ -173,5 +178,15 @@ public class Player
     public void setShild(SpriteSheet shild)
 	{
 		this.shild = shild;
+	}
+
+	public void setCurrentAction(SpriteSheet currentAction)
+	{
+		this.currentAction = currentAction;
+	}
+
+	public void setRightSide(boolean rightSide)
+	{
+		this.rightSide = rightSide;
 	}
 }
