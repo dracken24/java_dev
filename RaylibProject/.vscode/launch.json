@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
             "type": "java",
             "name": "Debug Raylib App",
@@ -11,7 +12,11 @@
                 "${workspaceFolder}/bin",
                 "${workspaceFolder}/jaylib-ffm-5.5.0-2.jar"
             ],
-            "preLaunchTask": "compile"
+            "preLaunchTask": "compile",
+            "sourcePaths": [
+                "${workspaceFolder}/src"
+            ],
+            "projectName": "RaylibProject"
         }
     ]
 } 
