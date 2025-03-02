@@ -115,14 +115,14 @@ public class Movement
             if (actionCounter == 0)
             {
                 this.actionInProgress = SpriteMovement.JUMP;
-                actionCounter = getJump().getAnimationTotalFrame();
+                actionCounter = jump.getAnimationTotalFrame();
             }
 		}
 		if (isMouseButtonPressed(MOUSE_BUTTON_LEFT))
 		{
             isKeyDown = true;
             this.actionInProgress = SpriteMovement.ATTACK01;
-            actionCounter = getAttack01().getAnimationTotalFrame();
+            actionCounter = attack01.getAnimationTotalFrame();
 		}
 
         // System.out.println("actionCounter: " + actionCounter);
@@ -287,42 +287,12 @@ public class Movement
                 break;
             case ATTACK01:
                 setCurrentAction(attack01);
-                break;
-            case ATTACK02:
-                setCurrentAction(attack02);
-                {
-                    setCurrentAction(attack02);
-                }
-                break;
-            case ATTACK03:
-                if (actionCounter == 0)
-                {
-                    setCurrentAction(attack03);
-                }
-                break;
-            case SHILD:
-                if (actionCounter == 0)
-                {
-                    setCurrentAction(shild);
-                }
-                break;
+                break; 
             case DEATH:
-                if (actionCounter == 0)
-                {
-                    setCurrentAction(death);
-                }
+                setCurrentAction(death);
                 break;
             case HURT:
-                if (actionCounter == 0)
-                {
-                    setCurrentAction(hurt);
-                }
-                break;
-            case WALK:
-                if (actionCounter == 0)
-                {
-                    setCurrentAction(walk);
-                }
+                setCurrentAction(hurt);
                 break;
         }
     }

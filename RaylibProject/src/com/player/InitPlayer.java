@@ -49,7 +49,7 @@ public class InitPlayer
 			4,
 			playerSize,
 			18,
-			3,
+			2,
 			playerPos
 		));
 
@@ -59,7 +59,7 @@ public class InitPlayer
 			8,
 			playerSize,
 			5,
-			3,
+			2,
 			playerPos
 		));
 
@@ -70,7 +70,7 @@ public class InitPlayer
 			4,
 			playerSize,
 			18,
-			3,
+			2,
 			playerPos
 		));
 
@@ -80,7 +80,7 @@ public class InitPlayer
 			4,
 			playerSize,
 			18,
-			3,
+			2,
 			playerPos
 		));
 
@@ -90,7 +90,7 @@ public class InitPlayer
 			7,
 			playerSize,
 			4,
-			3,
+			2,
 			playerPos
 		));
 

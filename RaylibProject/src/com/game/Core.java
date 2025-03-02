@@ -53,12 +53,7 @@ public class Core
 		initWindow((int)WindowSize.getX(), (int)WindowSize.getY(), title);
         setTargetFPS(60);
 
-		Vector2 playerPos = new Vector2(WindowSize.getX() / 2, WindowSize.getY() / 2);
-		Vector2 playerSize = new Vector2(70, 70);
-		Rectangle playerColisionSize = new Rectangle(WindowSize.getX() / 2 - 33, WindowSize.getY() / 2 - 60, 22, 55);
-
-		player = new Player(playerPos, playerSize, playerColisionSize, 3);
-		new InitPlayer(PlayerType.ICHIGO, player, playerPos, playerSize);
+		initPlayer();
 	}
 
 /***********************************************************************************/
@@ -76,5 +71,21 @@ public class Core
 			player.update();
 
 		endDrawing();
+	}
+
+	void initPlayer()
+	{
+		Vector2 playerPos = new Vector2(WindowSize.getX() / 2, WindowSize.getY() / 2);
+		Vector2 playerSize = new Vector2(70, 70);
+		int playerScale = 2;
+		Rectangle playerColisionSize = new Rectangle(
+			(WindowSize.getX() / 2) - (11 * playerScale),
+			(WindowSize.getY() / 2) - ((playerSize.getY() - 50) * playerScale),
+			22,
+			55
+		);
+
+		player = new Player(playerPos, playerSize, playerColisionSize, playerScale);
+		new InitPlayer(PlayerType.ICHIGO, player, playerPos, playerSize);
 	}
 }

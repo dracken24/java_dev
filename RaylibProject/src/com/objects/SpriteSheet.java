@@ -37,6 +37,7 @@ public class SpriteSheet
     Color color = new Color();	// Color of the sprite sheet
 
 	int frameCount;				// Number of frames in the sprite sheet
+	
 	int currentFrame;			// Current frame of the sprite sheet
 	Vector2 frameSize;			// Width and height of the frame in the sprite sheet
 	Vector2 ColisionBox;		// Colision box of the sprite sheet
@@ -62,7 +63,7 @@ public class SpriteSheet
 	}
 
 	public SpriteSheet(String path, int frameCount, Vector2 frameSize,
-		int skipFPS, int scale, Vector2 position)
+		int skipFPS, float scale, Vector2 position)
 	{
 		initSpriteSheet(
 			path,
@@ -75,7 +76,7 @@ public class SpriteSheet
 	}
 
 	void initSpriteSheet(String path, int frameCount, Vector2 frameSize,
-	int skipFPS, int scale, Vector2 position)
+	int skipFPS, float scale, Vector2 position)
 	{
 		try
 		{
