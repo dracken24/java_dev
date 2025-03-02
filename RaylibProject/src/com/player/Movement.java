@@ -19,6 +19,8 @@ import static com.raylib.Raylib.KeyboardKey.KEY_D;
 import static com.raylib.Raylib.KeyboardKey.KEY_SPACE;
 import static com.raylib.Raylib.isKeyDown;
 import static com.raylib.Raylib.isKeyPressed;
+import static com.raylib.Raylib.isMouseButtonPressed;
+    import static com.raylib.Raylib.MouseButton.MOUSE_BUTTON_LEFT;
 
 import com.objects.SpriteSheet;
 import com.enums.SpriteMovement;
@@ -116,23 +118,17 @@ public class Movement
                 actionCounter = getJump().getAnimationTotalFrame();
             }
 		}
+		if (isMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+            isKeyDown = true;
+            this.actionInProgress = SpriteMovement.ATTACK01;
+            actionCounter = getAttack01().getAnimationTotalFrame();
+		}
 
-
-		// if (isMouseButtonPressed(MOUSE_BUTTON_LEFT))
-		// {
-		// 	setMovement(SpriteMovement.ATTACK01);
-		// 	isKeyDown = true;
-		// }
-		// if (isMouseButtonDown(MOUSE_BUTTON_RIGHT))
-		// {
-		// 	setMovement(SpriteMovement.SHILD);
-		// 	isKeyDown = true;
-		// }
-
-        System.out.println("actionInProgress: " + actionInProgress);
+        // System.out.println("actionCounter: " + actionCounter);
+        // System.out.println("actionInProgress: " + actionInProgress);
 		if (!isKeyDown)
 		{
-            // System.out.println("actionCounter: " + actionCounter);
 			this.actionInProgress = SpriteMovement.IDLE;
 		}
         if (actionCounter > 0)
@@ -290,13 +286,10 @@ public class Movement
                 setCurrentAction(jump);
                 break;
             case ATTACK01:
-                if (actionCounter == 0)
-                {
-                    setCurrentAction(attack01);
-                }
+                setCurrentAction(attack01);
                 break;
             case ATTACK02:
-                if (actionCounter == 0)
+                setCurrentAction(attack02);
                 {
                     setCurrentAction(attack02);
                 }

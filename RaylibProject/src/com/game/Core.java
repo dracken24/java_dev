@@ -26,6 +26,7 @@ import static com.raylib.Raylib.VIOLET;
 import static com.raylib.Raylib.LIGHTGRAY;
 
 import com.raylib.Vector2;
+import com.raylib.Rectangle;
 
 import com.enums.PlayerType;
 import com.player.Player;
@@ -54,8 +55,9 @@ public class Core
 
 		Vector2 playerPos = new Vector2(WindowSize.getX() / 2, WindowSize.getY() / 2);
 		Vector2 playerSize = new Vector2(70, 70);
+		Rectangle playerColisionSize = new Rectangle(WindowSize.getX() / 2 - 33, WindowSize.getY() / 2 - 60, 22, 55);
 
-		player = new Player();
+		player = new Player(playerPos, playerSize, playerColisionSize, 3);
 		new InitPlayer(PlayerType.ICHIGO, player, playerPos, playerSize);
 	}
 
@@ -71,9 +73,8 @@ public class Core
 			Vector2 mousePosition = getMousePosition();
             drawText("Mouse position: " + mousePosition.getX() + ", " + mousePosition.getY(), 10, 10, 20, VIOLET);
 		
-			// player.getIdle().drawColisionBox();
 			player.update();
-			// player.catchInput();
+
 		endDrawing();
 	}
 }

@@ -84,6 +84,16 @@ public class InitPlayer
 			playerPos
 		));
 
+		// Attack 1
+		player.movement.setAttack01(new SpriteSheet(
+			"assets/Players/ichigo/ichigo_attack_1/ichigo_all_attack_01.png",
+			7,
+			playerSize,
+			4,
+			3,
+			playerPos
+		));
+
 		player.movement.setMovement(SpriteMovement.IDLE);
     }
 
