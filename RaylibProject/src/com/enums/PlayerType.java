@@ -16,6 +16,7 @@ package com.enums;
 
 public enum PlayerType
 {
+	ICHIGO,
 	SHINOBI,
 	FIGHTER,
 	SAMURAI,

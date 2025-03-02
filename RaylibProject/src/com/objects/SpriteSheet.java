@@ -19,7 +19,6 @@ import com.raylib.Color;
 import com.raylib.Vector2;
 
 import static com.raylib.Raylib.loadTexture;
-import static com.raylib.Raylib.drawTextureEx;
 import static com.raylib.Raylib.drawTexturePro;
 import static com.raylib.Raylib.drawRectangle;
 import static com.raylib.Raylib.WHITE;
@@ -43,7 +42,8 @@ public class SpriteSheet
 	Vector2 ColisionBox;		// Colision box of the sprite sheet
 
 	int skipFPS;				// Number of frames to skip in the sprite sheet
-	int skipFPSCount;			// Number of frames to skip in the sprite sheet
+	int skipFPSCount;			// Count frame to skip
+	int animationTotalFrame;	// Total frame of the animation
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                   */
@@ -51,25 +51,52 @@ public class SpriteSheet
 
 	public SpriteSheet(String path, int frameCount, Vector2 frameSize, int skipFPS)
 	{
+		initSpriteSheet(
+			path,
+			frameCount,
+			frameSize,
+			skipFPS,
+			1,
+			new Vector2(frameSize.getX() / 2, frameSize.getY() / 2)
+		);
+	}
+
+	public SpriteSheet(String path, int frameCount, Vector2 frameSize,
+		int skipFPS, int scale, Vector2 position)
+	{
+		initSpriteSheet(
+			path,
+			frameCount,
+			frameSize,
+			skipFPS,
+			scale,
+			position
+		);
+	}
+
+	void initSpriteSheet(String path, int frameCount, Vector2 frameSize,
+	int skipFPS, int scale, Vector2 position)
+	{
 		try
 		{
-			spriteSheet = loadTexture(path);
+			this.spriteSheet = loadTexture(path);
 		}
 		catch (Exception e)
 		{
 			System.out.println("Error loading texture: " + e.getMessage());
 		}
 
-		position = new Vector2(frameSize.getX() / 2, frameSize.getY() / 2);
-		ColisionBox = new Vector2(frameSize.getX(), frameSize.getY());
-		scale = 1;
-		rotation = 0;
-		color = WHITE;
+		this.position = new Vector2(position.getX(), position.getY());
+		this.ColisionBox = new Vector2(frameSize.getX(), frameSize.getY());
+		this.scale = scale;
+		this.rotation = 0;
+		this.color = WHITE;
 		this.frameCount = frameCount;
-		currentFrame = 0;
+		this.currentFrame = 0;
 		this.skipFPS = skipFPS;
-		skipFPSCount = 0;
+		this.skipFPSCount = 0;
 		this.frameSize = frameSize;
+		this.animationTotalFrame = frameCount * skipFPS;
 	}
 
 /***********************************************************************************/
@@ -126,6 +153,12 @@ public class SpriteSheet
 		source.setWidth(-frameSize.getX());
 	}
 
+	public void resetCounter()
+	{
+		currentFrame = 0;
+		skipFPSCount = 0;
+	}
+
 /***********************************************************************************/
 /***                                 GETTERS                                       */
 /***********************************************************************************/
@@ -173,6 +206,11 @@ public class SpriteSheet
 	public Vector2 getFrameSize()
 	{
 		return frameSize;
+	}
+
+	public int getAnimationTotalFrame()
+	{
+		return animationTotalFrame;
 	}
 
 /***********************************************************************************/
