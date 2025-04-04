@@ -1,0 +1,3 @@
+Enclos Principal;10 
+Savane Africaine;8 
+Forêt Tropicale;6 
