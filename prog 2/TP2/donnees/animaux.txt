@@ -1,0 +1,6 @@
+Lion;Simba;5;190.5;20
+Elephant;Dumbo;10;540.3;1.8
+Singe;George;3;33.2;Capucin
+Lion;Nala;4;180.0;18
+Elephant;Babar;12;600.7;2.0
+Singe;Kiki;2;28.9;Singe-araignée

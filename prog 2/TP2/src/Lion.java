@@ -7,28 +7,28 @@
 /*                MODIFIED BY: Nadia Desjardins                                    */
 /*                LAST MODIFIED: 04-4th-2025                                       */
 /*               -------------------------------------------------                 */
-/*                FILE: Elephant.java                                              */
+/*                FILE: Lion.java                                                  */
 /*               -------------------------------------------------                 */
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /* =============================================================================== */
 
-public class Elephant extends Animal
+public class Lion extends Animal
 {
 /***********************************************************************************/
 /***                                 VARIABLES                                   ***/
 /***********************************************************************************/
 
-    double longueurTrompe;
+    private int nombreCriniere;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                 ***/
 /***********************************************************************************/
 
-    public Elephant() { }
+    public Lion() { }
 
-    public Elephant(double longueurTrompe, String nom, int age, double poids)
+    public Lion(int nombreCriniere, String nom, int age, double poids)
     {
-        this.longueurTrompe = longueurTrompe;
+        this.nombreCriniere = nombreCriniere;
 
         super(nom, age, poids);
     }
@@ -39,16 +39,16 @@ public class Elephant extends Animal
 
     public void faireDuBruit()
     {
-        System.out.println("Phhhtttttttt");
+        System.out.println("Roarrrrrrrrrrrrr");
     }
 
 /***********************************************************************************/
 /***                                 GETTERS                                     ***/
 /***********************************************************************************/
 
-    public double getNombreCriniere()
+    public int getNombreCriniere()
     {
-        return longueurTrompe;
+        return nombreCriniere;
     }
 
 
@@ -56,8 +56,8 @@ public class Elephant extends Animal
 /***                                 SETTERS                                       */
 /***********************************************************************************/
 
-    public void setNombreCriniere(double longueurTrompe)
+    public void setNombreCriniere(int nombreCriniere)
     {
-        this.longueurTrompe = longueurTrompe;
+        this.nombreCriniere = nombreCriniere;
     }
 }

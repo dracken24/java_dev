@@ -7,57 +7,80 @@
 /*                MODIFIED BY: Nadia Desjardins                                    */
 /*                LAST MODIFIED: 04-4th-2025                                       */
 /*               -------------------------------------------------                 */
-/*                FILE: Lion.java                                                  */
+/*                FILE: Animal.java                                                */
 /*               -------------------------------------------------                 */
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /* =============================================================================== */
 
-public class Lion extends Animal
+public abstract class Animal
 {
 /***********************************************************************************/
 /***                                 VARIABLES                                   ***/
 /***********************************************************************************/
 
-    int nombreCriniere;
+    protected String nom;
+    protected int age;
+    protected double poids;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                 ***/
 /***********************************************************************************/
 
-    public Lion() { }
+    public Animal() { }
 
-    public Lion(int nombreCriniere, String nom, int age, double poids)
+    public Animal(String nom, int age, double poids)
     {
-        this.nombreCriniere = nombreCriniere;
-
-        super(nom, age, poids);
+        this.nom = nom;
+        this.age = age;
+        this.poids = poids;
     }
 
 /***********************************************************************************/
 /***                                 FUNCTIONS                                   ***/
 /***********************************************************************************/
 
-    public void faireDuBruit()
+    public String toString()
     {
-        System.out.println("Roarrrrrrrrrrrrr");
+        return "Nom: " + nom + ", Age: " + age + ", Poids: " + poids;
     }
+
+    public abstract void faireDuBruit();
 
 /***********************************************************************************/
 /***                                 GETTERS                                     ***/
 /***********************************************************************************/
 
-    public int getNombreCriniere()
+    public String getNom()
     {
-        return nombreCriniere;
+        return nom;
     }
 
+    public int getAge()
+    {
+        return age;
+    }
+
+    public double getPoids()
+    {
+        return poids;
+    }
 
 /***********************************************************************************/
 /***                                 SETTERS                                       */
 /***********************************************************************************/
 
-    public void setNombreCriniere(int nombreCriniere)
+    public void setNom(String nom)
     {
-        this.nombreCriniere = nombreCriniere;
+        this.nom = nom;
+    }
+
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
+
+    public void setPoids(double poids)
+    {
+        this.poids = poids;
     }
 }

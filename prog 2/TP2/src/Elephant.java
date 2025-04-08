@@ -7,80 +7,57 @@
 /*                MODIFIED BY: Nadia Desjardins                                    */
 /*                LAST MODIFIED: 04-4th-2025                                       */
 /*               -------------------------------------------------                 */
-/*                FILE: Animal.java                                                */
+/*                FILE: Elephant.java                                              */
 /*               -------------------------------------------------                 */
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /* =============================================================================== */
 
-public abstract class Animal
+public class Elephant extends Animal
 {
 /***********************************************************************************/
 /***                                 VARIABLES                                   ***/
 /***********************************************************************************/
 
-    private String nom;
-    private int age;
-    private double poids;
+    private double longueurTrompe;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                 ***/
 /***********************************************************************************/
 
-    public Animal() { }
+    public Elephant() { }
 
-    public Animal(String nom, int age, double poids)
+    public Elephant(double longueurTrompe, String nom, int age, double poids)
     {
-        this.nom = nom;
-        this.age = age;
-        this.poids = poids;
+        this.longueurTrompe = longueurTrompe;
+
+        super(nom, age, poids);
     }
 
 /***********************************************************************************/
 /***                                 FUNCTIONS                                   ***/
 /***********************************************************************************/
 
-    public String toString()
+    public void faireDuBruit()
     {
-        return "Nom: " + nom + ", Age: " + age + ", Poids: " + poids;
+        System.out.println("Phhhtttttttt");
     }
-
-    public abstract void faireDuBruit();
 
 /***********************************************************************************/
 /***                                 GETTERS                                     ***/
 /***********************************************************************************/
 
-    public String getNom()
+    public double getLongueurTrompe()
     {
-        return nom;
+        return longueurTrompe;
     }
 
-    public int getAge()
-    {
-        return age;
-    }
-
-    public double getPoids()
-    {
-        return poids;
-    }
 
 /***********************************************************************************/
 /***                                 SETTERS                                       */
 /***********************************************************************************/
 
-    public void setNom(String nom)
+    public void setLongueurTrompe(double longueurTrompe)
     {
-        this.nom = nom;
-    }
-
-    public void setAge(int age)
-    {
-        this.age = age;
-    }
-
-    public void setPoids(double poids)
-    {
-        this.poids = poids;
+        this.longueurTrompe = longueurTrompe;
     }
 }

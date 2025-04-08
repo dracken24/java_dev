@@ -1,4 +1,4 @@
-/* =============================================================================== */
+ /* =============================================================================== */
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /*               -------------------------------------------------                 */
 /*                PROJET: TP2                PAR: Nadia Desjardins                 */
@@ -20,9 +20,9 @@ public class Enclos
 /***                                 VARIABLES                                   ***/
 /***********************************************************************************/
 
-    String nomEnclos;
-    int capaciteMax;
-    ArrayList<Animal> listeAnimaux;
+    private String nomEnclos;
+    private int capaciteMax;
+    private ArrayList<Animal> listeAnimaux;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                 ***/
@@ -50,12 +50,20 @@ public class Enclos
         listeAnimaux.add(unAnimal);
     }
 
-    public void afficherAnimaux()
+    public String afficherAnimaux()
     {
+        String str = "";
         for (Animal animal : listeAnimaux)
         {
-            System.out.println("Animal Name: " + animal.getNom());
+            str += "Animal Name: " + animal.toString() + "\n";
         }
+
+        if (str == "")
+        {
+            str = "-- Aucun animal dans cet enclos. --\n";
+        }
+
+        return str;
     }
 
     public Animal rechercherAnimal(String nom)
@@ -81,6 +89,11 @@ public class Enclos
         {
             listeAnimaux.remove(animal);
         }
+    }
+
+    public String toString()
+    {
+        return "Enclos: " + nomEnclos + " avec une capacite de " + capaciteMax + " animaux\n";
     }
 
 /***********************************************************************************/
