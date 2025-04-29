@@ -14,7 +14,6 @@
 
 import java.util.ArrayList;
 import java.io.*;
-import java.text.*;
 import javax.swing.*;
 
 public class Utilitaire
@@ -28,6 +27,7 @@ public class Utilitaire
     private static BufferedReader bufLire;
     private static final String NOM_FICHIER_ENCLOS = "donnees/enclos.txt";
     private static final String NOM_FICHIER_ANIMAUX = "donnees/animaux.txt";
+    private int maxId;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                 ***/
@@ -36,6 +36,7 @@ public class Utilitaire
     public Utilitaire()
     {
         listeEnclos = new ArrayList<Enclos>();
+        maxId = 0;
 
         ChargementDonneesEnclos();
         ChargementDonneesAnimaux();
@@ -69,12 +70,6 @@ public class Utilitaire
         {
             JOptionPane.showMessageDialog(null, "Erreur lors de la lecture du fichier " + NOM_FICHIER_ENCLOS);
         }
-
-        // for (Enclos enclos : listeEnclos)
-        // {
-        //     System.out.println(enclos.getNomEnclos() + " " + enclos.getCapaciteMax());
-        //     System.out.println(enclos.toString());
-        // }
     }
 
     // Charger les donnees du fichier NOM_FICHIER_ANIMAUX
@@ -94,14 +89,6 @@ public class Utilitaire
             }
 
             bufLire.close(); // close file
-
-            // for (Enclos enclos : listeEnclos)
-            // {
-            //     System.out.println("--------------------------------");
-            //     System.out.println("Enclos: " + enclos.toString());
-            //     enclos.afficherAnimaux();
-            //     System.out.println("--------------------------------");
-            // }
         }
         catch (IOException e)
         {
@@ -110,9 +97,8 @@ public class Utilitaire
     }
 
     // Choix du type d'Animal
-    static void ajouterAnimal(String tab[])
+    void ajouterAnimal(String tab[])
     {
-        // System.out.println("tab: " + tab[1]);
         switch (tab[0])
         {
             case "Elephant":
@@ -131,62 +117,115 @@ public class Utilitaire
     }
 
     // Monter un animal avec les infos du ficher.txt et le mettre dans un renclos rendom
-    static void mountAnimal(Animal newAnimal, String tab[], TypeAnimaux type)
+    void mountAnimal(Animal newAnimal, String tab[], TypeAnimaux type)
     {
-        // System.out.println("tab: " + tab[1]);
-        String nom = tab[1];
+        // Recuperer le id de l'animal
+        int id = Integer.parseInt(tab[1]);
+        newAnimal.setId(id);
+
+        if (maxId < id)
+        {
+            maxId = id;
+        }
+
+        // Recuperer le nom de l'animal
+        String nom = tab[2];
         newAnimal.setNom(nom);
 
-        int age = Integer.parseInt(tab[2]);
+        // Recuperer l'age de l'animal
+        int age = Integer.parseInt(tab[3]);
         newAnimal.setAge(age);
 
-        double poids = Double.parseDouble(tab[3]);
+        // Recuperer le poid de l'animal
+        double poids = Double.parseDouble(tab[4]);
         newAnimal.setPoids(poids);
 
+        // Recuperer la longeur de la trompe de l'elephant ou le nombre de criniere du lion ou l'espece du singe
         switch (type)
         {
             case TypeAnimaux.ELEPHANT:
-                ((Elephant) newAnimal).setLongueurTrompe(Double.parseDouble(tab[4]));
+                ((Elephant) newAnimal).setLongueurTrompe(Double.parseDouble(tab[5]));
                 break;
             case TypeAnimaux.LION:
-                ((Lion) newAnimal).setNombreCriniere(Integer.parseInt(tab[4]));
+                ((Lion) newAnimal).setNombreCriniere(Integer.parseInt(tab[5]));
                 break;
             case TypeAnimaux.SINGE:
-                ((Singe) newAnimal).setEspece(tab[4]);
+                ((Singe) newAnimal).setEspece(tab[5]);
                 break;
         
             default:
                 break;
         }
 
-        // Ajouter dans un enclos rendom
-        int randNbr = (int)(Math.random() * listeEnclos.size());
-
-        Enclos enc = listeEnclos.get(randNbr);
+        // Ajouter l'animal dans un enclos random
+        Enclos enc = listeEnclos.get(0);
         enc.ajouterAnimal(newAnimal);
     }
 
     public String afficherAllAnimaux()
     {
         String str = "";
-
+        // int i = 101;
         for (Enclos enclos : listeEnclos)
         {
-            str += "--------------------------------------------------------------------------------------\n";
-            str += enclos.toString();
+            str += "-----------------------------------------------------------------------------------------------------------------------------\n";
+            str += enclos.toString() + "\n";
             str += enclos.afficherAnimaux();
-            str += "--------------------------------------------------------------------------------------\n";
+            str += "-----------------------------------------------------------------------------------------------------------------------------\n";
+            // i += 100;
         }
 
         return str;
+    }
+
+    public void supprimerAnimal(Animal a)
+    {
+        for (Enclos enclos : listeEnclos)
+        {
+            enclos.supprimerAnimal(a);
+        }
     }
 
 /***********************************************************************************/
 /***                                 GETTERS                                     ***/
 /***********************************************************************************/
 
+    public Enclos getListeEnclosByIndex(int index)
+    {
+        return listeEnclos.get(index);
+    }
+
+    public int getListeEnclosSize()
+    {
+        return listeEnclos.size();
+    }
+
+    public Animal getAnimalByName(String nom)
+    {
+        for (Enclos en : listeEnclos)
+        {
+            Animal a = en.rechercherAnimal(nom);
+
+            if (a != null)
+            {
+                return a;
+            }
+        }
+
+        return null;
+    }
+
+    public int getMaxId()
+    {
+        return this.maxId;
+    }
+
 /***********************************************************************************/
 /***                                 SETTERS                                       */
 /***********************************************************************************/
 
+    public void setMaxId(int newMaxId)
+    {
+        this.maxId = newMaxId;
+    }
 }

@@ -21,6 +21,7 @@ public abstract class Animal
     protected String nom;
     protected int age;
     protected double poids;
+    protected int id;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                 ***/
@@ -39,12 +40,15 @@ public abstract class Animal
 /***                                 FUNCTIONS                                   ***/
 /***********************************************************************************/
 
+    @Override
     public String toString()
     {
-        return "Nom: " + nom + ", Age: " + age + ", Poids: " + poids;
+        return "Nom: " + this.nom +
+                "\t     Age: " + this.age +
+                "\t Poids: " + this.poids + "\t";
     }
 
-    public abstract void faireDuBruit();
+    public abstract String faireDuBruit();
 
 /***********************************************************************************/
 /***                                 GETTERS                                     ***/
@@ -65,6 +69,11 @@ public abstract class Animal
         return poids;
     }
 
+    public int getId()
+    {
+        return id;
+    }
+
 /***********************************************************************************/
 /***                                 SETTERS                                       */
 /***********************************************************************************/
@@ -82,5 +91,10 @@ public abstract class Animal
     public void setPoids(double poids)
     {
         this.poids = poids;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

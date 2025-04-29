@@ -37,9 +37,14 @@ public class Singe extends Animal
 /***                                 FUNCTIONS                                   ***/
 /***********************************************************************************/
 
-    public void faireDuBruit()
+    public String faireDuBruit()
     {
-        System.out.println("Houhahaha");
+        return "Houhahaha";
+    }
+
+    public String toString()
+    {
+        return super.toString() + " Espece: " + espece;
     }
 
 /***********************************************************************************/
@@ -51,6 +56,10 @@ public class Singe extends Animal
         return espece;
     }
 
+    public String getType()
+    {
+        return "Singe";
+    }
 
 /***********************************************************************************/
 /***                                 SETTERS                                       */

@@ -12,7 +12,7 @@
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /* =============================================================================== */
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Enclos
 {
@@ -22,7 +22,7 @@ public class Enclos
 
     private String nomEnclos;
     private int capaciteMax;
-    private ArrayList<Animal> listeAnimaux;
+    private HashMap<Integer, Animal> listeAnimaux;
 
 /***********************************************************************************/
 /***                                 CONSTRUCTOR                                 ***/
@@ -30,7 +30,7 @@ public class Enclos
 
     public Enclos()
     {
-        listeAnimaux = new ArrayList<Animal>();
+        listeAnimaux = new HashMap<Integer, Animal>();
     }
 
     public Enclos(String nomEnclos, int capaciteMax)
@@ -38,7 +38,7 @@ public class Enclos
         this.nomEnclos = nomEnclos;
         this.capaciteMax = capaciteMax;
 
-        listeAnimaux = new ArrayList<Animal>();
+        listeAnimaux = new HashMap<Integer, Animal>();
     }
 
 /***********************************************************************************/
@@ -47,20 +47,33 @@ public class Enclos
 
     public void ajouterAnimal(Animal unAnimal)
     {
-        listeAnimaux.add(unAnimal);
+        listeAnimaux.put(unAnimal.getId(), unAnimal);
     }
 
     public String afficherAnimaux()
     {
         String str = "";
-        for (Animal animal : listeAnimaux)
+
+        // Afficher les animaux
+        for (Animal animal : listeAnimaux.values())
         {
-            str += "Animal Name: " + animal.toString() + "\n";
+            if (animal instanceof Lion)
+            {
+                str += "Id: " + animal.getId() + ". " + ((Lion)animal).getType() + "\t: " + animal.toString() + "\n";
+            }
+            if (animal instanceof Singe)
+            {
+                str += "Id: " + animal.getId() + ". " + ((Singe)animal).getType() + "\t: " + animal.toString() + "\n";
+            }
+            if (animal instanceof Elephant)
+            {
+                str += "Id: " + animal.getId() + ". " + ((Elephant)animal).getType() + "\t: " + animal.toString() + "\n";
+            }
         }
 
         if (str == "")
         {
-            str = "-- Aucun animal dans cet enclos. --\n";
+            str = "--- Aucun animal dans cet enclos. ---\n";
         }
 
         return str;
@@ -68,26 +81,22 @@ public class Enclos
 
     public Animal rechercherAnimal(String nom)
     {
-        for (Animal animal : listeAnimaux)
+        for (Animal animal : listeAnimaux.values())
         {
-            if (animal.getNom() == nom)
+            if (animal.getNom().equals(nom))
             {
-                System.out.println("Animal avec le nom: " + animal.getNom() + " est present dans l'enclos");
                 return animal;
             }
         }
 
-        System.out.println("Animal avec le nom: " + nom + " est manquant");
         return null;
     }
 
-    public void supprimerAnimal(String nom)
+    public void supprimerAnimal(Animal a)
     {
-        Animal animal = rechercherAnimal(nom);
-
-        if (animal != null)
+        if (a != null)
         {
-            listeAnimaux.remove(animal);
+            listeAnimaux.remove(a.getId());
         }
     }
 

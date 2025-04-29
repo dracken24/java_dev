@@ -37,9 +37,14 @@ public class Lion extends Animal
 /***                                 FUNCTIONS                                   ***/
 /***********************************************************************************/
 
-    public void faireDuBruit()
+    public String faireDuBruit()
     {
-        System.out.println("Roarrrrrrrrrrrrr");
+        return "Roarrrrrrrrrrrrr";
+    }
+
+    public String toString()
+    {
+        return super.toString() + " Nombre de crinieres: " + nombreCriniere;
     }
 
 /***********************************************************************************/
@@ -51,6 +56,10 @@ public class Lion extends Animal
         return nombreCriniere;
     }
 
+    public String getType()
+    {
+        return "Lion";
+    }
 
 /***********************************************************************************/
 /***                                 SETTERS                                       */

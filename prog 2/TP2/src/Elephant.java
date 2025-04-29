@@ -37,9 +37,14 @@ public class Elephant extends Animal
 /***                                 FUNCTIONS                                   ***/
 /***********************************************************************************/
 
-    public void faireDuBruit()
+    public String faireDuBruit()
     {
-        System.out.println("Phhhtttttttt");
+        return "Phhhtttttttt";
+    }
+
+    public String toString()
+    {
+        return super.toString() + " Longueur de la trompe: " + longueurTrompe;
     }
 
 /***********************************************************************************/
@@ -51,6 +56,10 @@ public class Elephant extends Animal
         return longueurTrompe;
     }
 
+    public String getType()
+    {
+        return "Elephant";
+    }
 
 /***********************************************************************************/
 /***                                 SETTERS                                       */
